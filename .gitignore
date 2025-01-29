@@ -1,0 +1,11 @@
+# Ignorar arquivos de ambiente virtual
+venv/
+__pycache__/
+
+# Ignorar arquivos temporários
+*.log
+*.csv
+*.db
+
+# Ignorar configurações do VSCode
+.vscode/
