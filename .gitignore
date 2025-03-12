@@ -2,15 +2,14 @@
 venv/
 __pycache__/
 
-# Ignorar arquivos temporários
+# Ignorar arquivos temporï¿½rios
 *.log
 *.csv
 *.db
 
 # Permitir apenas arquivos em data/source/
 !data/source/*.csv
-!data/source/*.csv
 
-# Ignorar configurações do VSCode
+# Ignorar configuraï¿½ï¿½es do VSCode
 .vscode/
 minio_data/ 
