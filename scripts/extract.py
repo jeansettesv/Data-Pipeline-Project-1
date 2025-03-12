@@ -11,10 +11,10 @@ s3 = boto3.client(
 
 BUCKET_NAME = "meu-projeto"
 FOLDER_PREFIX = "dados/"  # Nome da "pasta" no MinIO
-LOCAL_DIR = "processed_data/"
+LOCAL_DIR = "data/extracted/"
 
 def baixar_arquivos():
-    """Baixa os arquivos do MinIO e salva na pasta processed_data/."""
+    """Baixa os arquivos do MinIO e salva na pasta data/extracted/."""
     
     # Criar a pasta de destino se não existir
     if not os.path.exists(LOCAL_DIR):

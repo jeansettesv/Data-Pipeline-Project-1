@@ -10,17 +10,17 @@ s3 = boto3.client(
 )
 
 BUCKET_NAME = "meu-projeto"
-SOURCE_DIR = "source_data/"
+SOURCE_DIR = "data/source/"
 
 def upload_para_minio():
-    """Faz upload de todos os arquivos do diretório source_data/ para o MinIO."""
+    """Faz upload de todos os arquivos do diretório data/source/ para o MinIO."""
     if not os.path.exists(SOURCE_DIR):
-        print("⚠️ Diretório source_data/ não encontrado.")
+        print("⚠️ Diretório data/source/ não encontrado.")
         return
 
     arquivos = os.listdir(SOURCE_DIR)
     if not arquivos:
-        print("⚠️ Nenhum arquivo encontrado em source_data/.")
+        print("⚠️ Nenhum arquivo encontrado em data/source/.")
         return
 
     for arquivo in arquivos:
