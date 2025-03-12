@@ -7,6 +7,10 @@ __pycache__/
 *.csv
 *.db
 
+# Permitir apenas arquivos em data/source/
+!data/source/*.csv
+!data/source/*.csv
+
 # Ignorar configurações do VSCode
 .vscode/
 minio_data/ 
