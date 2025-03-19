@@ -8,7 +8,7 @@ fake = Faker()
 
 # Arquivo de entrada e saída
 TRANSACOES_FILE = "data/source/transacoes.csv"
-OUTPUT_DIR = "data/source/"
+OUTPUT_DIR = "data/database_bkp/"
 OUTPUT_FILE = os.path.join(OUTPUT_DIR, "clientes.csv")
 
 # Criar diretório se não existir

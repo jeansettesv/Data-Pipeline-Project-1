@@ -11,7 +11,7 @@ DB_CONFIG = {
     "port": "5432"
 }
 
-CLIENTS_FILE = "data/source/clientes.csv"
+CLIENTS_FILE = "data/database_bkp/clientes.csv"
 
 def conectar_banco():
     """Estabelece conexão com o banco de dados PostgreSQL."""
