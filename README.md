@@ -29,7 +29,7 @@ meu-projeto/
 │   ├── backup_db.py          # 🔄 Cria um backup do banco
 ├── docker-compose.yml        # 🐳 Configuração para rodar no Docker
 ├── README.md                 # 📄 Documentação do projeto
-
+```
 ---
 
 ## ⚙️ **Configuração e Uso**
@@ -40,6 +40,10 @@ Se quiser rodar tudo com Docker, basta executar:
 ```bash
 docker-compose up -d
 ```
+✅ Isso iniciará o PostgreSQL e o MinIO automaticamente, com os clientes já carregados no banco.
+
+---
+
 ### 🔹 **Opção 2: Configuração Manual**
 Caso prefira rodar sem Docker, siga os passos:
 
@@ -48,21 +52,28 @@ Caso prefira rodar sem Docker, siga os passos:
 ```bash
 python scripts/restore_db.py
 ```
+📌 Isso restaura um backup do banco contendo a tabela de clientes.
+⚠️ Não execute este comando se tiver gerado novos dados de transações, pois o backup ficaria desatualizado!
 
-2️⃣ Gerar e carregar os dados manualmente
-
-```bash
-python utils/generate_clients.py  # Gera clientes.csv
-python utils/load_clientes.py     # Carrega clientes no banco
-python utils/generate_data.py     # Gera transacoes fictícias
-```
-
-3️⃣ Rodar o pipeline de ETL
+2️⃣ Rodar o pipeline de ETL
 
 ```bash
-python scripts/extract.py
-python scripts/transform.py
-python scripts/load.py
+python scripts/upload_to_minio.py  # Envia o arquivo de transações da pasta source para o MinIO
+python scripts/extract.py          # Extrai o arquivo transações do MinIO e salva em .csv
+python scripts/transform.py        # Processa e transforma os dados extraídos e salva em .csv
+python scripts/load.py             # Carrega as transações transformadas no banco de dados
 ```
+📌 Agora os dados estão prontos para análise no PostgreSQL.
 
+3️⃣ Caso queira mudar os dados
+
+Se quiser modificar os dados e reiniciar o pipeline, execute os scripts abaixo antes de rodar o ETL novamente:
+
+```bash
+python utils/generate_data.py     # Gera um novo arquivo transacoes.csv com transações fictícias  
+python utils/generate_clients.py  # Gera um novo arquivo clientes.csv baseado nos IDs do arquivo de transações  
+python utils/load_clientes.py     # Carrega os novos clientes no banco  
+python utils/backup_db.py         # (Opcional) Gera um novo backup do banco apenas com os clientes recém-carregados  
+```
+📌 Depois, volte para a etapa do pipeline de ETL ou restaure o backup antes de prosseguir.
 
