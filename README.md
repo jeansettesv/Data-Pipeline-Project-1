@@ -62,8 +62,10 @@ python scripts/upload_to_minio.py  # Envia o arquivo de transações da pasta so
 python scripts/extract.py          # Extrai o arquivo transações do MinIO e salva em .csv
 python scripts/transform.py        # Processa e transforma os dados extraídos e salva em .csv
 python scripts/load.py             # Carrega as transações transformadas no banco de dados
+python scripts/create_enriched_table.py  # Cria a tabela transacoes_enriquecidas com JOIN entre clientes e transações
+python scripts/export_parquet.py   # Exporta os dados enriquecidos em formato .parquet
 ```
-📌 Agora os dados estão prontos para análise no PostgreSQL.
+📌 Ao final deste processo, será gerado o arquivo `transacoes_enriquecidas.parquet` na pasta `data/transformed/`.
 
 3️⃣ Caso queira mudar os dados
 
@@ -76,4 +78,12 @@ python utils/load_clientes.py     # Carrega os novos clientes no banco
 python utils/backup_db.py         # (Opcional) Gera um novo backup do banco apenas com os clientes recém-carregados  
 ```
 📌 Depois, volte para a etapa do pipeline de ETL ou restaure o backup antes de prosseguir.
+
+---
+
+## 📦 Exportação Final
+
+Após carregar os dados no banco, o script `export_parquet.py` exporta a tabela `transacoes_enriquecidas` em formato `.parquet` para a pasta `data/transformed/`.  
+Esse arquivo pode ser enviado para uma camada de analytics como **Databricks, BigQuery ou Amazon Athena**.
+
 
