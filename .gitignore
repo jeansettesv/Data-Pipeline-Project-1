@@ -1,4 +1,4 @@
-# Ignorar arquivos de ambiente virtual
+﻿# Ignorar arquivos de ambiente virtual
 venv/
 __pycache__/
 
@@ -6,6 +6,7 @@ __pycache__/
 *.log
 *.csv
 *.db
+*.parquet
 
 # Permitir apenas arquivos em data/source/
 !data/source/*.csv
